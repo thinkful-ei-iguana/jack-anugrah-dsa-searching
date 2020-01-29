@@ -27,12 +27,13 @@ class App extends React.Component {
     return -1;
   };
 
-  binarySearch = (array, value, start=0, end=array.length-1, count=0) => {
+  binarySearch = (array, value, start=0, end=array.length-1, origCount=0) => {
     console.log('function activated');
     if (start > end) return -1;
     array.sort();
     let index = Math.floor((start + end)/2);
     let item = array[index];
+    let count = origCount;
 
     if (item === parseInt(value)) {
       console.log('we found it!');
@@ -42,11 +43,13 @@ class App extends React.Component {
     }
     else if (item < parseInt(value)) {
       console.log('running another search');
-        return this.binarySearch(array, value, index+1, end, count++);
+      count++;
+        return this.binarySearch(array, value, index+1, end, count);
     }
     else if (item > parseInt(value)) {
       console.log('running another search');
-        return this.binarySearch(array, value, start, index-1, count++);
+      count++;
+        return this.binarySearch(array, value, start, index-1, count);
     }
 }
 
