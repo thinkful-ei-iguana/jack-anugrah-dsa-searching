@@ -1,4 +1,5 @@
 const BST = require('./BST');
+const Queue = require('./queue');
 //Q1
 // The sequence of the binary search would be:
     // 11, 5, 6, 8
@@ -84,4 +85,26 @@ dataSet.insert(22, 22);
 
 //console.log(inOrder(dataSet));
 //console.log(preOrder(dataSet));
-console.log(postOrder(dataSet));
+//console.log(postOrder(dataSet));
+
+function chainOfCommands(tree, values = []) {
+    const queue = new Queue();
+    const node = tree.root;
+
+    queue.enqueue(node);
+
+    while(queue.length){
+        const node = queue.dequeue();
+        values.push(node.value);
+
+        if (node.left) {
+            queue.enqueue(node.left);
+        }
+
+        if (node.right) {
+            queue.enqueue(node.right);
+        }
+    }
+    return values;
+}
+
