@@ -108,3 +108,20 @@ function chainOfCommands(tree, values = []) {
     return values;
 }
 
+function maxProfit(week) {
+    let result = 0;
+
+    for (let i=0; i<week.length; i++){
+        for(let j=i; j<week.length; j++){
+            if ((week[j] - week[i]) > result) {
+                result = week[j] - week[i];
+            }
+        }
+    }
+    return result;
+}
+
+console.log(maxProfit([128, 97, 121, 123, 98, 97, 105]));
+
+                    
+            
